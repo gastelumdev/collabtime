@@ -58,6 +58,7 @@ try {
 	$entryPoint->run();
 }
 catch (PDOException $e) {
+	// Create the title of the the error page
 	$title = 'An error has occurred';
 
 	$output = 'Database error: ' . $e->getMessage() . ' in ' .
