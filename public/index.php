@@ -1,6 +1,7 @@
 <?php
 try {
 	include __DIR__ . '/../includes/autoload.php';
+        // Remove message from request
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	
 	$route = ltrim(strtok($_SERVER['REQUEST_URI'], '?'), '/');   // JG remove leading / and extract the string till ? from e.g. /ch14_FINAL-Website/public/index.php?joke/list?page=1
