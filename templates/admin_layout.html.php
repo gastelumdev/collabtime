@@ -67,13 +67,15 @@
     <section id="body">
         <div class="container">
             <?php if (count($breadcrumbs) > 1): ?>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <?php foreach($breadcrumbs as $breadcrumb): ?>
-                        <li class="breadcrumb-item"><a href="index.php?<?=$breadcrumb['path']?>"><?=$breadcrumb['title']?></a></li>
-                        <?php endforeach; ?>
-                    </ol>
-                </nav>
+                <div class="breadcrumb flat">
+                    <?php foreach($breadcrumbs as $breadcrumb): ?>
+                        <?php if (count($breadcrumbs) == $breadcrumb['depth']): ?>
+                            <a href="index.php?<?=$breadcrumb['path']?>" class="active"><?=$breadcrumb['title']?></a>
+                        <?php else: ?>
+                            <a href="index.php?<?=$breadcrumb['path']?>"><?=$breadcrumb['title']?></a>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
 
             <?=$output?>
