@@ -130,6 +130,18 @@
         }
 
         public function showForm() {
+            if (isset($_GET['id'])) {
+                $school = $this->schoolsTable->findById($_GET['id']);
+
+                return [
+                    'title' => 'School Form',
+                    'template' => 'school_form.html.php',
+                    'variables' => [
+                        'school' => $school
+                    ]
+                ];
+            }
+
             return [
                 'title' => 'School Form',
                 'template' => 'school_form.html.php'

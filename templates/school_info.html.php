@@ -1,5 +1,6 @@
 <section id="body">
     <div class="container">
+        <a class="btn btn-primary" href="index.php?school/form?id=<?=$school['id']?>">Edit</a>
         <div class="row">
             <div class="col col-lg-8">
                 <table class="table table-sm">
