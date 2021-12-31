@@ -75,7 +75,7 @@ class FitinRoutes implements \Ninja\Routes {
 			// ==========================================================================
 			// ADMIN - EVENTS
 			// ==========================================================================
-			'admin/events' => [
+			'events' => [
 				'GET' => [
 					'controller' => $adminEventController,
 					'action' => 'list'
@@ -95,7 +95,7 @@ class FitinRoutes implements \Ninja\Routes {
 				],
 				'template' => 'admin_layout.html.php',
 			],
-			'admin/event/create' => [
+			'events/create' => [
 				'GET' => [
 					'controller' => $adminEventController,
 					'action' => 'showForm'
@@ -109,7 +109,7 @@ class FitinRoutes implements \Ninja\Routes {
 			// ==========================================================================
 			// ADMIN - SCHOOLS
 			// ==========================================================================
-			'admin/schools' => [
+			'events/schools' => [
 				'GET' => [
 					'controller' => $adminSchoolController,
 					'action' => 'list'
@@ -150,7 +150,7 @@ class FitinRoutes implements \Ninja\Routes {
 				],
 				'template' => 'form_layout.html.php'
 			],
-			'school/info' => [
+			'events/submittal' => [
 				'GET' => [
 					'controller' => $adminSchoolController,
 					'action' => 'showInfo'
@@ -160,7 +160,7 @@ class FitinRoutes implements \Ninja\Routes {
 			// ==========================================================================
 			// ADMIN - USERS
 			// ==========================================================================
-			'admin/users' => [
+			'events/users' => [
 				'GET' => [
 					'controller' => $adminUserController,
 					'action' => 'list'

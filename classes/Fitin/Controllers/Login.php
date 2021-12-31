@@ -17,7 +17,7 @@ class Login {
 	    // print($_POST['password']);
 		if ($this->authentication->login($_POST['email'], $_POST['password'])) {
 			//header('Location: /login/success'); //5/25/18 JG DEL1L  org
-            header('Location: index.php?admin/events'); //5/25/18 JG NEW1L  
+            header('Location: index.php?events'); //5/25/18 JG NEW1L  
 			
 		}
 		else {

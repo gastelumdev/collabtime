@@ -29,11 +29,35 @@ class EntryPoint {
 		return ob_get_clean();
 	}
 
+	private function createBreadcrumb($route) {
+		$levels = explode('/', $route);
+		$breadcrumb = [];
+		$path = '';
+		$depth = 1;
+
+		foreach ($levels as $level) {
+			if ($depth == 1) {
+				$path = $path . $level;
+			} else {
+				$path = $path . '/' . $level;
+			}
+
+			$depth++;
+			
+			$breadcrumb[] = [
+				'title' => ucfirst($level),
+				'path' => $path
+			];
+		}
+
+		return $breadcrumb;
+	}
+
 	public function run() {
 
 		$routes = $this->routes->getRoutes();	
 		$authentication = $this->routes->getAuthentication();
-
+		$breadcrumb = $this->createBreadcrumb($this->route);
 
 		
 		// 5/19/2021 OG NEW 1L - Get user for website header when logged in
@@ -66,6 +90,7 @@ class EntryPoint {
 				
 				echo $this->loadTemplate($template, ['loggedIn' => $authentication->isLoggedIn(),
 																'output' => $output,
+																'breadcrumbs' => $breadcrumb,
 																'title' => $title,
 																'user' => $authentication->getUser(),
 																'keys' => $google,
