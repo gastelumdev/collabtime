@@ -29,6 +29,10 @@ class EntryPoint {
 		return ob_get_clean();
 	}
 
+	private function createBreadcrumb($route) {
+		
+	}
+
 	public function run() {
 
 		$routes = $this->routes->getRoutes();	
