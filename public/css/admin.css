@@ -98,6 +98,20 @@ ul {
     width: 100%;
 }
 
+.btn-left {
+    margin: 10px 0px;
+    font-size: .9em;
+    float: right;
+}
+
+a.btn-left:link {
+    color: white;
+}
+
+a.btn-left:visited {
+    color: white;
+}
+
 @media screen and (min-width: 600px) {
     .hide {
         display: block;

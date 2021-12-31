@@ -1,8 +1,8 @@
 <section id="body">
     <div class="container">
-        <a class="btn btn-primary" href="index.php?school/form?id=<?=$school['id']?>">Edit</a>
         <div class="row">
             <div class="col col-lg-8">
+                <a class="btn btn-primary btn-left" href="index.php?school/form?id=<?=$school['id']?>">Edit</a>
                 <table class="table table-sm">
                     <tbody>
                         <tr>
