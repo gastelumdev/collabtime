@@ -41,13 +41,14 @@ class EntryPoint {
 			} else {
 				$path = $path . '/' . $level;
 			}
-
-			$depth++;
 			
 			$breadcrumb[] = [
 				'title' => ucfirst($level),
-				'path' => $path
+				'path' => $path,
+				'depth' => $depth
 			];
+
+			$depth++;
 		}
 
 		return $breadcrumb;
