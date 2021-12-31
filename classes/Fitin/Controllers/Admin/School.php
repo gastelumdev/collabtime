@@ -167,7 +167,7 @@
 
             $this->schoolsTable->save($updatedSchool);
 
-            header('location: index.php?school/info');
+            header('location: index.php?events/submittal');
         }
 
         private function getCurrentSchool() {

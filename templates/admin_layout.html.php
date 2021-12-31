@@ -27,12 +27,12 @@
             <h2>Manage</h2>
             <ul>
                 <?php if ($user['role'] > 0): ?>
-                    <li><a href="index.php?admin/events" class="<?php if ($title == "Events") echo "active" ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    <li><a href="index.php?events" class="<?php if ($title == "Events") echo "active" ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i>
                         Events</a></li>
                 <?php endif; ?>
 
                 <?php if ($user['role'] > 4): ?>
-                    <li><a href="index.php?admin/users" class="<?php if ($title == "Users") echo "active" ?>"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <li><a href="index.php?events/users" class="<?php if ($title == "Users") echo "active" ?>"><i class="fa fa-user-plus" aria-hidden="true"></i>
                         Users</a></li>
                 <?php endif; ?>
                 <li><a href="index.php?logout"><i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
             <h2><?=$_SESSION['event']['name']?></h2>
             <ul>
                 <?php if ($user['role'] > 3): ?>
-                    <li><a href="index.php?admin/schools" class="<?php if ($title == "Schools") echo "active" ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    <li><a href="index.php?events/schools" class="<?php if ($title == "Schools") echo "active" ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i>
                         Schools</a></li>
                 <?php endif; ?>
 
@@ -63,10 +63,23 @@
             </a>
             <h1 id="header-title" class="font-white"><?=$title?></h1>
         </div>
-                </div>
+    </div>
+    <section id="body">
+        <div class="container">
+            <?php if (count($breadcrumbs) > 1): ?>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <?php foreach($breadcrumbs as $breadcrumb): ?>
+                        <li class="breadcrumb-item"><a href="index.php?<?=$breadcrumb['path']?>"><?=$breadcrumb['title']?></a></li>
+                        <?php endforeach; ?>
+                    </ol>
+                </nav>
+            <?php endif; ?>
 
-    <?=$output?>
+            <?=$output?>
 
+        </div>
+    </section>
 
     <!-- =======================================================================
     | JAVASCRIPT

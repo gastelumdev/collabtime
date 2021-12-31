@@ -93,11 +93,11 @@
                     if ($status == 1) {
                         $location = 'school/form';
                     } elseif ($status == 2) {
-                        $location = 'school/info';
+                        $location = 'events/submittal';
                     }
                     
                 } elseif ($activeUser['role'] > 3) {
-                    $location = 'admin/schools';
+                    $location = 'events/schools';
                 }
             }
 
@@ -168,7 +168,7 @@
     
             $this->eventsTable->save($event);
 
-            header('location: index.php?admin/events');
+            header('location: index.php?events');
 
             // $result = $this->eventsTable->findAll();
             // $events = [];
