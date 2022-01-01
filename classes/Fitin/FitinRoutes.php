@@ -157,6 +157,27 @@ class FitinRoutes implements \Ninja\Routes {
 				],
 				'template' => 'admin_layout.html.php'
 			],
+			'events/schools/submittal' => [
+				'GET' => [
+					'controller' => $adminSchoolController,
+					'action' => 'showInfo'
+				],
+				'template' => 'admin_layout.html.php'
+			],
+			'events/schools/submittal/validate' => [
+				'GET' => [
+					'controller' => $adminSchoolController,
+					'action' => 'validate'
+				],
+				'template' => 'admin_layout.html.php'
+			],
+			'events/schools/submittal/devalidate' => [
+				'GET' => [
+					'controller' => $adminSchoolController,
+					'action' => 'devalidate'
+				],
+				'template' => 'admin_layout.html.php'
+			],
 			// ==========================================================================
 			// ADMIN - USERS
 			// ==========================================================================

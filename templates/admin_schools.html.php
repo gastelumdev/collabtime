@@ -46,15 +46,13 @@
                     <td class="editable"><div contenteditable="true" class="edit" id="name-<?=$_SESSION['event']['id']?>"><?=$school['name']?></div></td>
                     <td class="editable"><div contenteditable="true" class="edit" id="email-<?=$_SESSION['event']['id']?>"><?=$school['email']?></div></td>
                     <td><div id="status">
-                            <?php
-                                if ($school['status'] == 1) {
-                                    echo '<button type="button" class="btn btn-secondary btn-sm" disabled>Pending School Submittal</button>';
-                                } elseif ($school['status'] == 2) {
-                                    echo '<button class="btn btn-primary btn-sm" href="">Click to Verify</button>';
-                                } else {
-                                    echo '<button class="btn btn-success btn-sm" href="#" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</button>';
-                                }
-                            ?>
+                            <?php if ($school['status'] == 1): ?>
+                                <button type="button" class="btn btn-secondary btn-sm" disabled>Pending School Submittal</button>
+                            <?php elseif ($school['status'] == 2): ?>
+                                <a class="btn btn-primary btn-sm" href="index.php?events/schools/submittal?id=<?=$school['id']?>">Click to Verify</a>
+                            <?php else: ?>
+                                <a class="btn btn-success btn-sm" href="index.php?events/schools/submittal?id=<?=$school['id']?>" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>
