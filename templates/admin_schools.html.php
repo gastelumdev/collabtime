@@ -43,8 +43,8 @@
                 <tr>
                     <td scope="row"><?=$school['id']?></td>
                     <td scope="row"><button id="deleteBtn-<?=$school['id']?>" class="deleteBtn btn btn-danger btn-sm">Delete</button></td>
-                    <td class="editable"><div contenteditable="true" class="edit" id="name-<?=$_SESSION['event']['id']?>"><?=$school['name']?></div></td>
-                    <td class="editable"><div contenteditable="true" class="edit" id="email-<?=$_SESSION['event']['id']?>"><?=$school['email']?></div></td>
+                    <td class="editable"><div contenteditable="true" class="edit" id="name-<?=$school['id']?>"><?=$school['name']?></div></td>
+                    <td class="editable"><div contenteditable="true" class="edit" id="email-<?=$school['id']?>"><?=$school['email']?></div></td>
                     <td><div id="status">
                             <?php if ($school['status'] == 1): ?>
                                 <button type="button" class="btn btn-secondary btn-sm limit-width" disabled>Pending School Submittal</button>
