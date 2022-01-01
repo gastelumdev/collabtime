@@ -105,6 +105,13 @@
                 }
             }
 
+            $to = $_POST['email'];
+            $subject = "Welcome to Collabtime";
+            $txt = "<h1>Welcome to Collabtime!</h1>";
+            $headers = "From: noreply@collabtime.co";
+
+            mail($to,$subject,$txt,$headers);
+
             $json = json_encode($schools);
             return $json; 
         }
