@@ -19,6 +19,9 @@ $(document).ready(function() {
             var id = $(this).attr('id').split('-')[1];
     
             console.log(field);
+            console.log(value);
+            console.log(type);
+            console.log(id);
     
             if (value != '') {
     
