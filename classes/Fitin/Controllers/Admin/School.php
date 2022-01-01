@@ -150,25 +150,48 @@
 
         public function saveForm() {
             $result = $_POST;
+            $school = $this->schoolsTable->findById($result['id']);
             $activeUser = $this->authentication->getUser();
 
-            $schools = $this->schoolsTable->find('user_id', $activeUser['id']);
-
-            $updatedSchool = Array();
-
-            foreach ($schools as $school) {
-                if ($school['event_id'] == $_SESSION['event']['id']) {
-                    $updatedSchool['id'] = $school['id'];
-                    $updatedSchool['city'] = $result['city'];
-                    $updatedSchool['zipcode'] = $result['zipcode'];
-                    $updatedSchool['status'] = 2;
-                }
-            }
+            $updatedSchool = [
+                'id' => $result['id'],
+                'city' => $result['city'],
+                'zipcode' => $result['zipcode'],
+                'status' => 2
+            ];
 
             $this->schoolsTable->save($updatedSchool);
 
-            header('location: index.php?events/submittal');
+            if ($activeUser['role'] > 3 && $activeUser['id'] != $school['user_id']) {
+                header('location: index.php?events/schools/submittal?id='. $result['id']);
+            } else {
+                header('location: index.php?events/submittal?id='. $result['id']);
+            }
+
+            
         }
+
+        // public function saveForm() {
+        //     $result = $_POST;
+        //     $activeUser = $this->authentication->getUser();
+
+        //     $schools = $this->schoolsTable->find('user_id', $activeUser['id']);
+
+        //     $updatedSchool = Array();
+
+        //     foreach ($schools as $school) {
+        //         if ($school['event_id'] == $_SESSION['event']['id']) {
+        //             $updatedSchool['id'] = $school['id'];
+        //             $updatedSchool['city'] = $result['city'];
+        //             $updatedSchool['zipcode'] = $result['zipcode'];
+        //             $updatedSchool['status'] = 2;
+        //         }
+        //     }
+
+        //     $this->schoolsTable->save($updatedSchool);
+
+        //     header('location: index.php?events/submittal');
+        // }
 
         private function getCurrentSchool() {
             $activeUser = $this->authentication->getUser();
@@ -183,16 +206,52 @@
         }
 
         public function showInfo() {
-            $activeUser = $this->authentication->getUser();
+            if (isset($_GET['id'])) {
+                $school = $this->schoolsTable->findById($_GET['id']);
+            } else {
+                $school = $this->getCurrentSchool();
+            }
 
-            $school = $this->getCurrentSchool();
+            $activeUser = $this->authentication->getUser();
 
             return [
                 'title' => $_SESSION['event']['name'],
                 'template' => 'school_info.html.php',
                 'variables' => [
-                    'school' => $school
+                    'school' => $school,
+                    'role' => $activeUser['role'],
+                    'status' => $school['status']
                 ]
             ];
+        }
+
+        public function validate() {
+            if (isset($_GET['id'])) {
+                $school = $this->schoolsTable->findById($_GET['id']);
+
+                $updatedSchool = [
+                    'id' => $_GET['id'],
+                    'status' => 3
+                ];
+
+                $this->schoolsTable->save($updatedSchool);
+
+                header('location: index.php?events/schools');
+            }
+        }
+
+        public function devalidate() {
+            if (isset($_GET['id'])) {
+                $school = $this->schoolsTable->findById($_GET['id']);
+
+                $updatedSchool = [
+                    'id' => $_GET['id'],
+                    'status' => 2
+                ];
+
+                $this->schoolsTable->save($updatedSchool);
+
+                header('location: index.php?events/schools');
+            }
         }
     }

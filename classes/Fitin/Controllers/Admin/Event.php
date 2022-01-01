@@ -86,12 +86,13 @@
 
                     foreach ($schools as $school) {
                         if ($school['event_id'] == $event['id']) {
+                            $id = $school['id'];
                             $status = $school['status'];
                         }
                     }
 
                     if ($status == 1) {
-                        $location = 'school/form';
+                        $location = 'school/form?id='. $id;
                     } elseif ($status == 2) {
                         $location = 'events/submittal';
                     }
