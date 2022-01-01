@@ -98,10 +98,23 @@ ul {
     width: 100%;
 }
 
+#status a {
+    width: 100%;
+}
+
+#status a:link {
+    color: white;
+}
+
+#status a:visited {
+    color: white;
+}
+
 .btn-left {
-    margin: 10px 0px;
+    margin: 10px 3px;
     font-size: .9em;
     float: right;
+
 }
 
 a.btn-left:link {
@@ -110,6 +123,10 @@ a.btn-left:link {
 
 a.btn-left:visited {
     color: white;
+}
+
+.limit-width {
+    width: 200px;
 }
 
 @media screen and (min-width: 600px) {

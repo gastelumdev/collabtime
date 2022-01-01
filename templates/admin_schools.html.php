@@ -47,11 +47,11 @@
                     <td class="editable"><div contenteditable="true" class="edit" id="email-<?=$_SESSION['event']['id']?>"><?=$school['email']?></div></td>
                     <td><div id="status">
                             <?php if ($school['status'] == 1): ?>
-                                <button type="button" class="btn btn-secondary btn-sm" disabled>Pending School Submittal</button>
+                                <button type="button" class="btn btn-secondary btn-sm limit-width" disabled>Pending School Submittal</button>
                             <?php elseif ($school['status'] == 2): ?>
-                                <a class="btn btn-primary btn-sm" href="index.php?events/schools/submittal?id=<?=$school['id']?>">Click to Verify</a>
+                                <a class="btn btn-primary btn-sm limit-width" href="index.php?events/schools/submittal?id=<?=$school['id']?>">Click to Verify</a>
                             <?php else: ?>
-                                <a class="btn btn-success btn-sm" href="index.php?events/schools/submittal?id=<?=$school['id']?>" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</a>
+                                <a class="btn btn-success btn-sm limit-width" href="index.php?events/schools/submittal?id=<?=$school['id']?>" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</a>
                             <?php endif; ?>
                         </div>
                     </td>
