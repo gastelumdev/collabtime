@@ -1,0 +1,9 @@
+RewriteEngine On 
+RewriteCond %{HTTPS} off 
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+
+RewriteCond %{HTTP_HOST} ^collabtime.co$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.collabtime.co$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
