@@ -15,7 +15,8 @@ ul {
     float: left;
     color: var(--white);
     height: 100%;
-    position: absolute;
+    /* position: fixed;
+    overflow: auto; */
     padding: 10px 20px;
     z-index: 10;
 }
