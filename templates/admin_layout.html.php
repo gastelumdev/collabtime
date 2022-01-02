@@ -16,7 +16,7 @@
     <!-- The side nav should not show if it is a school coming from the invitation -->
     <div id="side-nav" class="hide">
         <div class="header">
-            <a href="index.php"><img src="images/collabtime2.png" alt="Site logo." width="180px" height="60px"></a>
+            <a href="index.php"><img src="images/collabtime5.png" alt="Site logo." width="75px" height="80px"></a>
         </div>
         <div class="user">
             <img src="images/users/<?=$user['image']?>" alt="">

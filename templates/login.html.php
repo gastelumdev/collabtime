@@ -1,6 +1,6 @@
 <div id="login" class="auth">
 	<div class="header">
-		<a href="index.php"><img src="images/collabtime2.png" alt="logo" width="200px" height="60px"></a>
+		<a href="index.php"><img src="images/collabtime4.png" alt="logo" width="75px" height="80px"></a>
 		<h1>Let's Get Started</h1>
 	</div>
 	<div class="nav">
