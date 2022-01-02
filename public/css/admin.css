@@ -23,6 +23,9 @@ ul {
 #side-nav div {
     padding: 15px;
 }
+#side-nav .header {
+    padding-left: 60px;
+}
 #side-nav a {
     text-decoration: none;
     color: var(--white);
