@@ -190,7 +190,7 @@
                 
                 // Compose a simple HTML email message
                 $message = '<html><body>';
-                $message .= '<h1 style="color:#343a40;">' . $school['name'] . ' has updated their information for '. $_SESSION['event']['name'] .' event.';
+                $message .= '<h1 style="color:#343a40;">' . $school['name'] . ' has updated their information for '. $_SESSION['event']['name'] .' event.</h1>';
                 $message .= '<p>Go to <a href="https://collabtime.co">Collabtime.co</a> to verify and validate their status.</p>';
                 $message .= '<p>Thank you, from everyone at Collabtime!</p>';
                 $message .= '</body></html>';
