@@ -106,11 +106,27 @@
             }
 
             $to = $_POST['email'];
-            $subject = "Welcome to Collabtime";
-            $txt = "<h1>Welcome to Collabtime!</h1>";
-            $headers = "From: noreply@collabtime.co";
+            $subject = $activeUser['firstname'] . ' ' . $activeUser['lastname'] . ' welcomes you to this year\'s ' . $_SESSION['event']['name'];
+            $from = "noreply@collabtime.co";
+            // To send HTML mail, the Content-type header must be set
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            
+            // Create email headers
+            $headers .= 'From: '.$from."\r\n".
+                'Reply-To: '.$from."\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            
+            // Compose a simple HTML email message
+            $message = '<html><body>';
+            $message .= '<h1 style="color:#f40;">You have been invited to participate in this year\'s '. $_SESSION['event']['name'] .'</h1>';
+            $message .= '<p>Go to <a href="https://collabtime.co">Collabtime.co</a> to submit your schools information. Use the credentials below to login.</p>';
+            $message .= '<p style="color:#080;font-size:18px;">Username: '. $_POST['email'] .'</p>';
+            $message .= '<p style="color:#080;font-size:18px;">Password: '. $randomPassword .'</p>';
+            $message .= '<p>Thank you, from everyone at Collabtime!</p>';
+            $message .= '</body></html>';
 
-            mail($to,$subject,$txt,$headers);
+            mail($to,$subject,$message,$headers);
 
             $json = json_encode($schools);
             return $json; 
@@ -159,6 +175,30 @@
             $result = $_POST;
             $school = $this->schoolsTable->findById($result['id']);
             $activeUser = $this->authentication->getUser();
+            $eventManager = $this->usersTable->findById($_SESSION['event']['created_by']);
+
+            if ($school['status'] == 1) {
+                $to = $eventManager;
+                $subject = $school['name'] . ' has updated their information for '. $_SESSION['event']['name'] .' event.';
+                $from = "noreply@collabtime.co";
+                // To send HTML mail, the Content-type header must be set
+                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                
+                // Create email headers
+                $headers .= 'From: '.$from."\r\n".
+                    'Reply-To: '.$from."\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                
+                // Compose a simple HTML email message
+                $message = '<html><body>';
+                $message .= '<h1 style="color:#f40;">' . $school['name'] . ' has updated their information for '. $_SESSION['event']['name'] .' event.';
+                $message .= '<p>Go to <a href="https://collabtime.co">Collabtime.co</a> to verify and validate their status.</p>';
+                $message .= '<p>Thank you, from everyone at Collabtime!</p>';
+                $message .= '</body></html>';
+
+                mail($to,$subject,$message,$headers);
+            }
 
             $updatedSchool = [
                 'id' => $result['id'],
@@ -235,6 +275,28 @@
         public function validate() {
             if (isset($_GET['id'])) {
                 $school = $this->schoolsTable->findById($_GET['id']);
+                $activeUser = $this->authentication->getUser();
+
+                $to = $school['email'];
+                $subject = 'The information provided for ' . $_SESSION['event']['name'] . ' has been approved by ' . $activeUser['firstname'] . ' ' . $activeUser['lastname'];
+                $from = "noreply@collabtime.co";
+                // To send HTML mail, the Content-type header must be set
+                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                
+                // Create email headers
+                $headers .= 'From: '.$from."\r\n".
+                    'Reply-To: '.$from."\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                
+                // Compose a simple HTML email message
+                $message = '<html><body>';
+                $message .= '<h1 style="color:#f40;">The information provided for ' . $_SESSION['event']['name'] . ' has been approved by ' . $activeUser['firstname'] . ' ' . $activeUser['lastname'];
+                $message .= '<p>Go to <a href="https://collabtime.co">Collabtime.co</a> if changes need to be made.</p>';
+                $message .= '<p>Thank you, from everyone at Collabtime!</p>';
+                $message .= '</body></html>';
+
+                mail($to,$subject,$message,$headers);
 
                 $updatedSchool = [
                     'id' => $_GET['id'],
