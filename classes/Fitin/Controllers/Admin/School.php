@@ -147,7 +147,7 @@
             
             // 5/23/21 OG NEW - else delete the event and redirect to admin events page
             $this->schoolsTable->delete($_POST['id']);
-            header('location: index.php?admin/schools');  // 5/25/18 JG NEW1L  		
+            header('location: index.php?events/schools');  // 5/25/18 JG NEW1L  		
         }
 
         public function showForm() {
