@@ -1,7 +1,8 @@
 <?php
     namespace Fitin\Controllers\Admin;
 
-    use Ninja\DatabaseTable;
+use Exception;
+use Ninja\DatabaseTable;
     use \Ninja\Authentication;
 
     class School {
@@ -103,31 +104,44 @@
                 }
             }
 
+            $output = [
+                $schools, $randomPassword
+            ];
+
+            $json = json_encode($output);
+            return $json; 
+        }
+
+        public function createEmail() {
+            
+            $activeUser = $this->authentication->getUser();
+
             $to = $_POST['email'];
             $subject = $activeUser['firstname'] . ' ' . $activeUser['lastname'] . ' welcomes you to this year\'s ' . $_SESSION['event']['name'];
             $from = "noreply@collabtime.co";
-            // To send HTML mail, the Content-type header must be set
+            
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             
-            // Create email headers
             $headers .= 'From: '.$from."\r\n".
                 'Reply-To: '.$from."\r\n" .
                 'X-Mailer: PHP/' . phpversion();
             
-            // Compose a simple HTML email message
             $message = '<html><body>';
             $message .= '<h1 style="color:#343a40;">You have been invited to participate in this year\'s '. $_SESSION['event']['name'] .'</h1>';
             $message .= '<p>Go to <a href="https://collabtime.co">Collabtime.co</a> to submit your schools information. Use the credentials below to login.</p>';
             $message .= '<p style="color:#080;font-size:18px;">Username: '. $_POST['email'] .'</p>';
-            $message .= '<p style="color:#080;font-size:18px;">Password: '. $randomPassword .'</p>';
+            $message .= '<p style="color:#080;font-size:18px;">Password: '. $_POST['password'] .'</p>';
             $message .= '<p>Thank you, from everyone at Collabtime!</p>';
             $message .= '</body></html>';
 
-            mail($to,$subject,$message,$headers);
-
-            $json = json_encode($schools);
-            return $json; 
+        
+            if (mail($to,$subject,$message,$headers)) {
+                return "Success";
+            } else {
+                return "Failed";
+            }
+            
         }
 
         public function edit() {
@@ -147,7 +161,7 @@
             
             // 5/23/21 OG NEW - else delete the event and redirect to admin events page
             $this->schoolsTable->delete($_POST['id']);
-            header('location: index.php?admin/schools');  // 5/25/18 JG NEW1L  		
+            header('location: index.php?events/schools');  // 5/25/18 JG NEW1L  		
         }
 
         public function showForm() {

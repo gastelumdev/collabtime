@@ -178,6 +178,12 @@ class FitinRoutes implements \Ninja\Routes {
 				],
 				'template' => 'admin_layout.html.php'
 			],
+			'events/schools/create/email' => [
+				'POST' => [
+					'controller' => $adminSchoolController,
+					'action' => 'createEmail'
+				]
+			],
 			// ==========================================================================
 			// ADMIN - USERS
 			// ==========================================================================
