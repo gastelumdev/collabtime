@@ -168,7 +168,7 @@ $(document).ready(function() {
                     console.log(data);
                     var type;
                     var parsedData = JSON.parse(data);
-                    var lastItem = parsedData[parsedData.length - 1];
+                    var lastItem = parsedData[0][parsedData[0].length - 1];
                     var tableHead = $('#tableHead');
                     var tableBody = $('#tableBody');
                     console.log(tableHead[0].children[0].children);
@@ -210,6 +210,25 @@ $(document).ready(function() {
 
                     edit();
                     del();
+
+                    console.log(lastItem);
+
+                    data = {
+                        id: lastItem['id'],
+                        name: lastItem['name'],
+                        email: lastItem['email'],
+                        status: lastItem['status'],
+                        password: parsedData[1]
+                    };
+
+                    $.ajax({
+                        url: 'index.php?events/schools/create/email',
+                        type: 'POST',
+                        data: data,
+                        success: function(data, textStatus, jqXHR) {
+                            console.log(data);
+                        }
+                    });
                 }
             });
         } else {
