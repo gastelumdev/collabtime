@@ -1,9 +1,12 @@
-
-<h1><?=$title?></h1>
-<input type="hidden" name="type" id="type" value="school">
-
+<div>
+<h1 id="page_title"><?=$title?></h1>
+<p id="title_msg">Total schools invited: <span id="count"><?=$totalSchools?></span><span id="error_msg"></span></p>
+</div>
 <!-- 5/23/21 OG NEW - Display the number of groups calculated in the controller -->
-<p>Total schools invited: <span id="count"><?=$totalSchools?></span></p>
+
+
+
+<input type="hidden" name="type" id="type" value="school">
 <!-- 5/23/21 OG NEW - if the user has author rights then display the create group button -->
 <?php if ($loggedIn && $role >= 4): ?>
     <table class="table table-sm table-striped table-hover">

@@ -133,6 +133,20 @@ a.btn-left:visited {
     width: 200px;
 }
 
+#page_title {
+    display: inline-block;
+}
+
+#title_msg {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#error_msg {
+    color: red;
+    margin-left: 15px;
+}
+
 @media screen and (min-width: 600px) {
     .hide {
         display: block;

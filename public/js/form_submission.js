@@ -53,7 +53,7 @@ $(document).ready(function() {
                     id: id
                 },
                 success: function(data, textStatus, jqXHR) {
-                    console.log(data);
+                    
                     row.remove();
 
                     var count = document.getElementById('count');
@@ -165,70 +165,74 @@ $(document).ready(function() {
                 type: 'POST',
                 data: data,
                 success: function(data, textStatus, jqXHR) {
-                    console.log(data);
+                    
                     var type;
                     var parsedData = JSON.parse(data);
-                    var lastItem = parsedData[0][parsedData[0].length - 1];
-                    var tableHead = $('#tableHead');
-                    var tableBody = $('#tableBody');
-                    console.log(tableHead[0].children[0].children);
-                    var row = '';
-                    var tableRow = tableHead[0].children[0].children;
+                    if (parsedData['email_conflict'] == true) {
+                        document.getElementById('error_msg').innerHTML = "* The email you entered is associated with an administrator user. Please try again."
+                    } else {
+                        var lastItem = parsedData[0][parsedData[0].length - 1];
+                        var tableHead = $('#tableHead');
+                        var tableBody = $('#tableBody');
+                        console.log(tableHead[0].children[0].children);
+                        var row = '';
+                        var tableRow = tableHead[0].children[0].children;
 
-                    row += '<tr>';
-                    row += '<td scope="row">' + lastItem['id'] +'</td>';
-                    row += '<td scope="row"><button id="deleteBtn-'+ lastItem['id'] +'" class="deleteBtn btn btn-danger btn-sm">Delete</button></td>';
-                    for (var i = 2; i < tableRow.length; i++) {
-                        if (tableRow[i].className == 'editable') {
-                            type = tableRow[i].firstChild.id.split('-')[0];
-                            row += '<td><div contenteditable="true" class="edit" id="'+ type +'-'+ lastItem['id'] +'">'+ lastItem[type] +'</div></td>';
-                        } else {
-                            type = tableRow[i].firstChild.id;
-                            if (type == 'status') {
-                                
-                                if (lastItem[type] == 1) {
-                                    console.log('This is the status of ' + lastItem[type]);
-                                    row += '<td><div id="status"><button type="button" class="btn btn-secondary btn-sm" disabled>Pending School Submittal</button></div></td>';
-                                } else if (lastItem[type] == 2) {
-                                    row += '<td><div id="status"><button class="btn btn-primary btn-sm" href="">Click to Verify</button></div></td>';
-                                } else if (lastItem[type] == 3) {
-                                    row += '<td><div id="status"><button class="btn btn-success btn-sm" href="#" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</button></div></td>';
-                                }
+                        row += '<tr>';
+                        row += '<td scope="row">' + lastItem['id'] +'</td>';
+                        row += '<td scope="row"><button id="deleteBtn-'+ lastItem['id'] +'" class="deleteBtn btn btn-danger btn-sm">Delete</button></td>';
+                        for (var i = 2; i < tableRow.length; i++) {
+                            if (tableRow[i].className == 'editable') {
+                                type = tableRow[i].firstChild.id.split('-')[0];
+                                row += '<td><div contenteditable="true" class="edit" id="'+ type +'-'+ lastItem['id'] +'">'+ lastItem[type] +'</div></td>';
                             } else {
-                                row += '<td>'+ lastItem[type] +'</td>';
+                                type = tableRow[i].firstChild.id;
+                                if (type == 'status') {
+                                    
+                                    if (lastItem[type] == 1) {
+                                        console.log('This is the status of ' + lastItem[type]);
+                                        row += '<td><div id="status"><button type="button" class="btn btn-secondary btn-sm" disabled>Pending School Submittal</button></div></td>';
+                                    } else if (lastItem[type] == 2) {
+                                        row += '<td><div id="status"><button class="btn btn-primary btn-sm" href="">Click to Verify</button></div></td>';
+                                    } else if (lastItem[type] == 3) {
+                                        row += '<td><div id="status"><button class="btn btn-success btn-sm" href="#" role="button"><i class="fa fa-check-circle" aria-hidden="true"></i> View Submittal</button></div></td>';
+                                    }
+                                } else {
+                                    row += '<td>'+ lastItem[type] +'</td>';
+                                }
+                                
                             }
-                            
                         }
+                        
+
+                        tableBody.append(row);
+                        console.log(parsedData[parsedData.length - 1]);
+
+                        var count = document.getElementById('count');
+                        count.innerHTML = parseInt(count.innerHTML) + 1;
+
+                        edit();
+                        del();
+
+                        console.log(lastItem);
+
+                        data = {
+                            id: lastItem['id'],
+                            name: lastItem['name'],
+                            email: lastItem['email'],
+                            status: lastItem['status'],
+                            password: parsedData[1]
+                        };
+
+                        $.ajax({
+                            url: 'index.php?events/schools/create/email',
+                            type: 'POST',
+                            data: data,
+                            success: function(data, textStatus, jqXHR) {
+                                console.log(data);
+                            }
+                        });
                     }
-                    
-
-                    tableBody.append(row);
-                    console.log(parsedData[parsedData.length - 1]);
-
-                    var count = document.getElementById('count');
-                    count.innerHTML = parseInt(count.innerHTML) + 1;
-
-                    edit();
-                    del();
-
-                    console.log(lastItem);
-
-                    data = {
-                        id: lastItem['id'],
-                        name: lastItem['name'],
-                        email: lastItem['email'],
-                        status: lastItem['status'],
-                        password: parsedData[1]
-                    };
-
-                    $.ajax({
-                        url: 'index.php?events/schools/create/email',
-                        type: 'POST',
-                        data: data,
-                        success: function(data, textStatus, jqXHR) {
-                            console.log(data);
-                        }
-                    });
                 }
             });
         } else {

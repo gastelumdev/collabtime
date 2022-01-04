@@ -42,7 +42,8 @@ use Ninja\DatabaseTable;
                     'totalSchools' => $totalSchools,
                     'userId' => $activeUser['id'],
                     'role' => $activeUser['role'] ?? '',
-                    'loggedIn' => $this->authentication->isLoggedIn()
+                    'loggedIn' => $this->authentication->isLoggedIn(),
+                    'email_conflict' => ''
                 ]
             ];
         }
@@ -56,7 +57,14 @@ use Ninja\DatabaseTable;
             $existingUser = $this->usersTable->find('email', $school['email']);
             
             if (count($existingUser) > 0) {
-                $userExists = true;
+                if ($existingUser[0]['role'] > 3) {
+                    
+                    return json_encode(['email_conflict' => true]);
+                } else {
+                    $userExists = true;
+                }
+
+                
             }
             // $randomPassword = strval(rand(100000, 999999));
             $randomPassword = substr($school['email'], 0, 4) . '1234';
