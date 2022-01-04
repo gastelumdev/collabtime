@@ -129,6 +129,29 @@ a.btn-left:visited {
     color: white;
 }
 
+.btn-danger {
+    background-color: #EF5B5B;
+    border-color: #EF5B5B;
+}
+
+.btn-primary {
+    background-color: var(--complementary);
+}
+
+button.btn-primary:hover {
+    background-color: var(--complementaryDark);
+}
+
+a.btn-primary:hover {
+    background-color: var(--complementaryDark);
+}
+
+.btn-success {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: black;
+}
+
 .limit-width {
     width: 200px;
 }
@@ -145,6 +168,31 @@ a.btn-left:visited {
 #error_msg {
     color: red;
     margin-left: 15px;
+}
+
+table {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.04em;
+}
+
+table.table-no-border {
+    border: none;
+}
+
+table.table-no-border th {
+    border: none;
+}
+
+table.table-no-border td {
+    border: none;
+}
+
+input.form-control.short {
+    height: 33px;
+}
+
+.narrow {
+    width: 50px;
 }
 
 @media screen and (min-width: 600px) {

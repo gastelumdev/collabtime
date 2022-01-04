@@ -9,19 +9,19 @@
 <input type="hidden" name="type" id="type" value="school">
 <!-- 5/23/21 OG NEW - if the user has author rights then display the create group button -->
 <?php if ($loggedIn && $role >= 4): ?>
-    <table class="table table-sm table-striped table-hover">
+    <table class="table table-sm table-no-border">
         <thead>
             <tr>
-                <th scope="col">Action</th>
+                <th scope="col" class="narrow">Action</th>
                 <th scope="col">School Name</th>
                 <th scope="col">School Email</th>
             </tr>
         </thead>
         <tbody id="inputs">
             <tr>
-                <td scope="row"><button id="createSchool" class="createBtn btn btn-primary btn-sm">Invite</button></td>
-                <td scope="row"><input id="name" type="text" class="form-control"></td>
-                <td scope="row"><input id="email" type="email" class="form-control"></td>
+                <td scope="row" class="narrow"><button id="createSchool" class="createBtn btn btn-primary btn-sm">Invite</button></td>
+                <td scope="row"><input id="name" type="text" class="form-control short"></td>
+                <td scope="row"><input id="email" type="email" class="form-control short"></td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +29,7 @@
 <!-- 5/23/21 OG NEW - If the total amount of groups is greater than 0, display the table -->
 <?php if ($totalSchools > 0): ?>
     <div class="table-responsive">
-        <table class="table table-sm table-striped table-hover">
+        <table class="table table-sm table-hover">
         <thead id="tableHead">
             <tr>
                 <th scope="col">#</th>
