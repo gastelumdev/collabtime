@@ -59,7 +59,7 @@ use Ninja\DatabaseTable;
                 $userExists = true;
             }
             // $randomPassword = strval(rand(100000, 999999));
-            $randomPassword = substr($school['name'], 0, 4) . '1234';
+            $randomPassword = substr($school['email'], 0, 4) . '1234';
 
             if (!$userExists) {
                 $user = [
