@@ -8,12 +8,12 @@ html, body {
 | LOGIN
 ============================================================================= */
 .auth {
-    width: 400px;
+    width: 80%;
     max-width: 400px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin: 0 auto;
+    margin-top: 7%;
+    /* transform: translate(-50%, -50%); */
     background-color: white;
     box-shadow: 0 1px 2px 0 rgba(121, 121, 121, 0.2), 0 1px 20px 0 rgba(255, 255, 255, 0.19);
 }
@@ -63,4 +63,10 @@ html, body {
 }
 .auth button:hover {
     background-color: var(--lightDarken);
+}
+
+@media screen and (min-width: 992px) {
+    .auth {
+        width: 27%;
+    }
 }
