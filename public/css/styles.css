@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 /* :root {
@@ -17,13 +18,15 @@
     --dark: #04232b;
     --light: #00BBF9;
     --lightDarken: #2acaff;
-    --complementary: #2acaff;
+    --complementary: #1e97bc;
     --complementaryLight: #a6f320;
+    --complementaryDark: #197c9b;
     --white: #F5FBEF;
     --otherLight: #69A9AE;
     --otherDark: #0a87b1;
     --darkGray: #343a40;
     --siteBlue: #69A9AE;
+    --green: #57a773;
 }
 
 body {
@@ -299,7 +302,7 @@ nav .icon {
 }
 .flat a:hover, .flat a.active, 
 .flat a:hover:after, .flat a.active:after{
-	background: #007BFF;
+	background: var(--complementary);
 }
 
 
