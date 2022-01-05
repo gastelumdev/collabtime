@@ -114,7 +114,9 @@ a.btn.btn-complementary:hover {
     color: white;
     background-color: var(--complementaryLight);
 }
-
+a:hover {
+    text-decoration: none;
+}
 /* =============================================================================
 | Alerts
 ============================================================================= */
@@ -587,6 +589,7 @@ section .title {
 .card .card {
     box-shadow: 0 1px 2px 0 rgba(121, 121, 121, 0.2), 0 1px 20px 0 rgba(255, 255, 255, 0.19);
     /* border-bottom: 1px solid var(--light); */
+    transition-property: scale;
 }
 
 /* Small cards */
@@ -595,6 +598,20 @@ section .title {
     height: 200px;
     /* height: auto; */
     object-fit: cover;
+}
+.card.card-small.card-animate {
+    box-shadow: 5px 5px 10px #e2e2e2;
+    transition: box-shadow .3s, transform .3s;
+}
+.card.card-small.card-animate:hover {
+    transform:scale(1.03,1.03);
+    box-shadow: 8px 8px 14px #e2e2e2;
+}
+.card.card-small.card-animate p {
+    color: var(--light);
+}
+.card.card-small.card-animate p:hover {
+    text-decoration: none;
 }
 .card.card-small .card-details {
     text-align: center;
@@ -697,15 +714,27 @@ section .title {
 /* Dashed border card */
 .card-add {
     border: 3px dashed rgb(218, 218, 218);
+    height: 265px;
 }
 .card-add .centered-text {
     position: absolute;
     /* color: red; */
     z-index: 10;
 }
-.card.card-add .card-image img {
-    width: 100%;
+.card.card-add .card-image {
+    height: 200px;
 }
+.card.card-add .card-image img {
+    display: block;
+    margin: 20px auto;
+    height: 150px;
+    width: 40%;
+    opacity: 0.6;
+}
+
+/* .card.card-animate:hover {
+    background-color: white;
+} */
 
 
 /* =============================================================================

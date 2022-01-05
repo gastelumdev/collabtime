@@ -195,6 +195,8 @@ input.form-control.short {
     width: 50px;
 }
 
+
+
 @media screen and (min-width: 600px) {
     .hide {
         display: block;
